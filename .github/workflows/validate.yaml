@@ -1,0 +1,26 @@
+name: Renovate Config Validator
+
+on:
+  pull_request:
+    paths:
+      - "renovate.json"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install devDependencies
+        run: npm ci --only=dev
+
+      - name: validate renovate.json
+        run: npx --package=renovate -c renovate-config-validator
