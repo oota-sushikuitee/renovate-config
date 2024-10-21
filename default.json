@@ -1,0 +1,72 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended"
+    ],
+    "timezone": "Asia/Tokyo",
+    "schedule": [
+        "after 1am and before 3am on monday"
+    ],
+    "automergeSchedule": [
+        "after 3am and before 6am on monday"
+    ],
+    "prHourlyLimit": 0,
+    "updateNotScheduled": false,
+    "dependencyDashboard": true,
+    "internalChecksFilter": "none",
+    "packageRules": [
+        {
+            "matchPackageNames": [
+                "*"
+            ],
+            "rangeStrategy": "replace"
+        },
+        {
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "minimumReleaseAge": "5 days",
+            "addLabels": [
+                "renovate/major"
+            ]
+        },
+        {
+            "matchUpdateTypes": [
+                "minor"
+            ],
+            "minimumReleaseAge": "5 days",
+            "addLabels": [
+                "renovate/minor"
+            ],
+            "automerge": true
+        },
+        {
+            "matchUpdateTypes": [
+                "patch"
+            ],
+            "minimumReleaseAge": "3 days",
+            "addLabels": [
+                "renovate/patch"
+            ],
+            "automerge": true
+        },
+        {
+            "matchUpdateTypes": [
+                "pin"
+            ],
+            "addLabels": [
+                "renovate/pin"
+            ],
+            "automerge": true
+        },
+        {
+            "matchDepTypes": [
+                "action"
+            ],
+            "excludePackagePrefixes": [
+                "actions/"
+            ],
+            "pinDigests": true
+        }
+    ]
+}
