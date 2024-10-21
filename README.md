@@ -36,3 +36,5 @@ GitHub Organization全体で有効化したいRenovateの設定をまとめた�
 - GitHub Actionsは、`actions/`配下ではないものは、SHA256のハッシュ値を指定する
 
 ### other
+
+- dependencyDashboardの有効化
