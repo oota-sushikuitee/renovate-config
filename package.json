@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "validate-config": "npx -package=renovate -c renovate-config-validator"
+    "validate-config": "npx renovate-config-validator default.json"
   },
   "devDependencies": {
     "renovate": "^38.129.0"

@@ -3,7 +3,7 @@ name: Renovate Config Validator
 on:
   pull_request:
     paths:
-      - "renovate.json"
+      - "default.json"
   workflow_dispatch:
 
 jobs:
@@ -23,4 +23,4 @@ jobs:
         run: npm ci --only=dev
 
       - name: validate renovate.json
-        run: npx --package=renovate -c renovate-config-validator
+        run: npm run validate-config
