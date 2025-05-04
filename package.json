@@ -3,6 +3,6 @@
     "validate-config": "npx renovate-config-validator default.json"
   },
   "devDependencies": {
-    "renovate": "^39.0.0"
+    "renovate": "^40.0.0"
   }
 }
