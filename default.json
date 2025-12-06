@@ -1,72 +1,67 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "config:recommended"
-    ],
-    "timezone": "Asia/Tokyo",
-    "schedule": [
-        "after 1am and before 3am on monday"
-    ],
-    "automergeSchedule": [
-        "after 3am and before 6am on monday"
-    ],
-    "prHourlyLimit": 0,
-    "updateNotScheduled": false,
-    "dependencyDashboard": true,
-    "internalChecksFilter": "none",
-    "packageRules": [
-        {
-            "matchPackageNames": [
-                "*"
-            ],
-            "rangeStrategy": "replace"
-        },
-        {
-            "matchUpdateTypes": [
-                "major"
-            ],
-            "minimumReleaseAge": "5 days",
-            "addLabels": [
-                "renovate/major"
-            ]
-        },
-        {
-            "matchUpdateTypes": [
-                "minor"
-            ],
-            "minimumReleaseAge": "5 days",
-            "addLabels": [
-                "renovate/minor"
-            ],
-            "automerge": true
-        },
-        {
-            "matchUpdateTypes": [
-                "patch"
-            ],
-            "minimumReleaseAge": "3 days",
-            "addLabels": [
-                "renovate/patch"
-            ],
-            "automerge": true
-        },
-        {
-            "matchUpdateTypes": [
-                "pin"
-            ],
-            "addLabels": [
-                "renovate/pin"
-            ],
-            "automerge": true
-        },
-        {
-            "matchDepTypes": [
-                "action"
-            ],
-            "excludePackagePrefixes": [
-                "actions/"
-            ],
-            "pinDigests": true
-        }
-    ]
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+
+  // --- 基本設定 ---
+  "timezone": "Asia/Tokyo",
+
+  "schedule": [
+    "after 1am and before 3am on monday"
+  ],
+
+  "automergeSchedule": [
+    "after 3am and before 6am on monday"
+  ],
+
+  // PR スパムを避けるため無制限をやめる
+  "prHourlyLimit": 20,
+
+  // rebase だけはスケジュール外 OK にする
+  "updateNotScheduled": true,
+
+  // dependency dashboard = ON
+  "dependencyDashboard": true,
+
+  // 内部チェック抑制（現設定を維持）
+  "internalChecksFilter": "none",
+
+  // --- packageRules ---
+  "packageRules": [
+    {
+      // GitHub Actions のみ replace（digest pinning）
+      "matchManagers": ["github-actions"],
+      "rangeStrategy": "replace",
+      "pinDigests": true
+    },
+    {
+      // major updates → グルーピング + ラベル + 自動マージなし
+      "matchUpdateTypes": ["major"],
+      "minimumReleaseAge": "5 days",
+      "addLabels": ["renovate/major"],
+      "groupName": "major dependency updates",
+      "groupSlug": "major-updates"
+    },
+    {
+      // minor updates → 自動マージ + releaseAge
+      "matchUpdateTypes": ["minor"],
+      "minimumReleaseAge": "5 days",
+      "addLabels": ["renovate/minor"],
+      "automerge": true
+    },
+    {
+      // patch updates → 自動マージ + releaseAge
+      "matchUpdateTypes": ["patch"],
+      "minimumReleaseAge": "3 days",
+      "addLabels": ["renovate/patch"],
+      "automerge": true
+    },
+    {
+      // pin updates → 自動マージ
+      "matchUpdateTypes": ["pin"],
+      "addLabels": ["renovate/pin"],
+      "automerge": true
+    }
+  ]
 }
