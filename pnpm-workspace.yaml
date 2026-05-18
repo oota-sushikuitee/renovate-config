@@ -1,0 +1,8 @@
+allowBuilds:
+  core-js-pure: set this to true or false
+  dtrace-provider: set this to true or false
+  protobufjs: set this to true or false
+  re2: set this to true or false
+overrides:
+  protobufjs: 8.3.0
+  simple-git: 3.36.0
