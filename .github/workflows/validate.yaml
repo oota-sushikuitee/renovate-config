@@ -19,8 +19,5 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Install devDependencies
-        run: npm ci --only=dev
-
-      - name: validate renovate.json
-        run: npm run validate-config
+      - name: Validate default.json
+        run: npx --yes --package renovate -- renovate-config-validator default.json
