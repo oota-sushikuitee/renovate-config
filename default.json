@@ -3,15 +3,15 @@
     "extends": [
         "config:recommended",
         ":configMigration",
-        ":semanticCommitTypeAll(chore)"
+        ":semanticCommitTypeAll(chore)",
+        "group:allNonMajor",
+        "group:allDigest"
     ],
     "timezone": "Asia/Tokyo",
     "platformAutomerge": false,
+    "rebaseWhen": "conflicted",
     "schedule": [
         "after 1am and before 3am on monday"
-    ],
-    "automergeSchedule": [
-        "after 3am and before 6am on monday"
     ],
     "prHourlyLimit": 0,
     "updateNotScheduled": false,
@@ -63,11 +63,17 @@
             "automerge": true
         },
         {
+            "matchUpdateTypes": [
+                "digest"
+            ],
+            "automerge": true
+        },
+        {
             "matchDepTypes": [
                 "action"
             ],
-            "excludePackagePrefixes": [
-                "actions/"
+            "matchPackageNames": [
+                "!actions/{/,}**"
             ],
             "pinDigests": true
         }
