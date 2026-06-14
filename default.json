@@ -1,9 +1,12 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:recommended"
+        "config:recommended",
+        ":configMigration",
+        ":semanticCommitTypeAll(chore)"
     ],
     "timezone": "Asia/Tokyo",
+    "platformAutomerge": false,
     "schedule": [
         "after 1am and before 3am on monday"
     ],
