@@ -4,5 +4,5 @@ allowBuilds:
   protobufjs: set this to true or false
   re2: set this to true or false
 overrides:
-  protobufjs: 8.3.0
+  protobufjs: 8.6.4
   simple-git: 3.36.0
