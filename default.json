@@ -9,7 +9,7 @@
     ],
     "timezone": "Asia/Tokyo",
     "platformAutomerge": false,
-    "rebaseWhen": "conflicted",
+    "rebaseWhen": "auto",
     "schedule": [
         "after 1am and before 3am on monday"
     ],
