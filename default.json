@@ -77,6 +77,13 @@
                 "!actions/{/,}**"
             ],
             "pinDigests": true
+        },
+        {
+            "description": "pnpm 11.12.0 is a broken release: its tarball fails to install, so any self-switch to it crashes (pnpm/pnpm#12955, pnpm/action-setup#276). Remove once a fixed release ships.",
+            "matchPackageNames": [
+                "pnpm"
+            ],
+            "allowedVersions": "!/^11\\.12\\.0$/"
         }
     ]
 }
