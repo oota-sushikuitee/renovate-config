@@ -4,10 +4,10 @@ allowBuilds:
   protobufjs: false
   re2: false
 overrides:
-  protobufjs: 8.3.0
+  protobufjs: 8.7.0
   simple-git: 3.36.0
   js-yaml@3: 3.15.0
-  js-yaml@4: 4.2.0
+  js-yaml@4: 4.3.0
   undici: 6.27.0
-  tar: 7.5.16
-  markdown-it: 14.2.0
+  tar: 7.5.20
+  markdown-it: 14.3.0
