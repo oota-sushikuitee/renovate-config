@@ -5,7 +5,7 @@ allowBuilds:
   re2: false
 overrides:
   adm-zip: 0.6.0
-  protobufjs: 8.3.0
+  protobufjs: 8.6.5
   simple-git: 3.36.0
   js-yaml@3: 3.15.0
   js-yaml@4: 4.2.0
