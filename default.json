@@ -16,7 +16,7 @@
     "prHourlyLimit": 0,
     "updateNotScheduled": false,
     "dependencyDashboard": true,
-    "internalChecksFilter": "none",
+    "internalChecksFilter": "strict",
     "packageRules": [
         {
             "matchPackageNames": [
