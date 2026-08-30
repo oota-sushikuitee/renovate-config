@@ -14,7 +14,7 @@
         "after 1am and before 3am on monday"
     ],
     "prHourlyLimit": 0,
-    "updateNotScheduled": false,
+    "updateNotScheduled": true,
     "dependencyDashboard": true,
     "internalChecksFilter": "strict",
     "packageRules": [
