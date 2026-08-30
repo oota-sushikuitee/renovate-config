@@ -65,6 +65,15 @@
         },
         {
             "matchUpdateTypes": [
+                "pinDigest"
+            ],
+            "addLabels": [
+                "renovate/pin-digest"
+            ],
+            "automerge": true
+        },
+        {
+            "matchUpdateTypes": [
                 "digest"
             ],
             "automerge": true
