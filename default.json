@@ -17,6 +17,10 @@
     "updateNotScheduled": true,
     "dependencyDashboard": true,
     "internalChecksFilter": "strict",
+    "lockFileMaintenance": {
+        "enabled": true,
+        "automerge": true
+    },
     "packageRules": [
         {
             "matchPackageNames": [
