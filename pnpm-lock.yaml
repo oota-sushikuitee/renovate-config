@@ -12,7 +12,7 @@ overrides:
   js-yaml@4: 4.3.2
   undici: 6.28.1
   tar: 7.5.22
-  markdown-it: 14.3.1
+  markdown-it: 14.3.3
   brace-expansion@1: 1.1.21
   brace-expansion@5: 5.0.12
   re2: 1.26.1
@@ -1452,8 +1452,8 @@ packages:
     resolution: {integrity: sha512-vtEhXh/gNjI9Yg1u4jX/0YVPMvxzHuGgCm6tC5kZyb08yjGWGnqAjGJvcXbqQR2P3MyMEFnRbpcdFS6PBcLqew==}
     engines: {node: '>=12'}
 
-  markdown-it@14.3.1:
-    resolution: {integrity: sha512-4Ej49aYTDFIQ+uBkfX8GBvJGccoARxxPep+7aWTs55ozbjQJpW9M26Fe53vnGgvLeVzva/amzjQQaQu9w0vMhA==}
+  markdown-it@14.3.3:
+    resolution: {integrity: sha512-L//tDAkjTjJCU6pBUSBTgs3Kg4InVaZuUZog/b6V12UKhcDQ7S78877ibbCanRExwPuYP1CZD7Gd2dxSy1GXRg==}
     hasBin: true
 
   markdown-table@3.0.4:
@@ -3988,7 +3988,7 @@ snapshots:
 
   luxon@3.7.2: {}
 
-  markdown-it@14.3.1:
+  markdown-it@14.3.3:
     dependencies:
       argparse: 2.0.1
       entities: 4.5.0
@@ -4712,7 +4712,7 @@ snapshots:
       jsonc-weaver: 0.3.1
       klona: 2.0.6
       luxon: 3.7.2
-      markdown-it: 14.3.1
+      markdown-it: 14.3.3
       markdown-table: 3.0.4
       minimatch: 10.2.6
       moo: 0.5.3
