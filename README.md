@@ -16,6 +16,8 @@ Shared Renovate configuration to enable across the whole GitHub organization.
 
 ## Configuration
 
+[`default.json`](default.json) is the source of truth for every setting. This section explains only what the file cannot say about itself: what the presets do and why the less obvious values are set.
+
 ### extends
 
 - [config:recommended](https://docs.renovatebot.com/presets-config/#configrecommended)
@@ -26,26 +28,19 @@ Shared Renovate configuration to enable across the whole GitHub organization.
 
 ### schedule / merge
 
-- Timezone: Asia/Tokyo
-- PRs are created weekly, on Monday between 01:00 and 03:00
-- Automerge has no fixed time window; updates merge as soon as CI is green and the release-age requirement is met (the repo "Allow auto-merge" setting is unavailable on the free plan, so `platformAutomerge: false` and Renovate merges directly)
+- Automerge has no fixed time window; updates merge as soon as CI is green and the release-age requirement is met
+- `platformAutomerge: true` — in a repository with "Allow auto-merge" enabled, GitHub merges the PR the moment its required checks pass; elsewhere Renovate falls back to merging the PR itself on its next run. GitHub merges without waiting for CI when no required status checks are enforced, so a repository that cannot enforce them must override `platformAutomerge: false` before enabling "Allow auto-merge"
 - `prHourlyLimit: 0` — no hourly limit on how many PRs Renovate may open. The number of PRs open at the same time is still capped by `prConcurrentLimit`, which is left at Renovate's default because this preset does not set it
-- `updateNotScheduled: true` — the schedule gates branch and PR *creation* only. A new update PR still appears only in the Monday window, but an already open branch can be updated, rebased and automerged on any Renovate run once its cooldown has passed and CI is green, instead of waiting for the next Monday. Keep this value set explicitly: with `false`, Renovate returns early for out-of-window branches and never reaches the automerge step at all, so green PRs sit open for up to a week. The trade-off is that an open branch may rebase and re-run CI outside the window
+- `updateNotScheduled: true` — the schedule gates branch and PR *creation* only. A new update PR still appears only in the scheduled window, but an already open branch can be updated, rebased and automerged on any Renovate run once its cooldown has passed and CI is green, instead of waiting for the next window. Keep this value set explicitly: with `false`, Renovate returns early for out-of-window branches and never reaches the automerge step at all, so green PRs sit open until the next window. The trade-off is that an open branch may rebase and re-run CI outside the window
 - `internalChecksFilter: "strict"` — an update that has not yet cleared its release-age cooldown is left out of the PR entirely instead of being shown as pending. A grouped PR can therefore list fewer dependencies than you expect; the rest arrive in a later window
 - `rebaseWhen: auto` — Renovate picks the rebase behaviour per branch: branches that automerge are kept up to date with the base branch, other branches are only rebased on conflict. It used to be `conflicted`, which left grouped automerge PRs stale and orphaned when the base branch moved on, so `auto` is the value to keep
 
 ### packageRules
 
 - All packages use `rangeStrategy: replace`: an existing version range is replaced with a new range only when the current one no longer allows the new version, instead of being widened or bumped every time
-- Add labels per update type (major, minor, patch, pin, pinDigest)
-- Enable automerge for minor, patch, pin, pinDigest, and digest updates
-- Automerged updates (minor / patch) wait 14 days after release (a longer supply-chain cooldown since they merge unattended)
-- Major updates use `dependencyDashboardApproval`: no PR is opened until approved from the Dependency Dashboard (reviewed one by one); they also wait 5 days after release
-- GitHub Actions not under `actions/` are pinned to their SHA256 digest. The first PR for such an action is a `pinDigest` update, which is labelled `renovate/pin-digest` and automerged; later SHA refreshes come through as grouped `digest` updates
-
-### other
-
-- Dependency Dashboard enabled
+- Minor and patch updates merge unattended, so their `minimumReleaseAge` is longer than the one for majors: with no human review, a longer cooldown gives a compromised release more time to be caught and pulled
+- Major updates use `dependencyDashboardApproval`: no PR is opened until someone approves it from the Dependency Dashboard, so each one is reviewed individually
+- GitHub Actions not under `actions/` are pinned to their SHA256 digest. The first PR for such an action is a `pinDigest` update, which is automerged; later SHA refreshes come through as grouped `digest` updates
 
 ## Rules for consumer repositories
 
