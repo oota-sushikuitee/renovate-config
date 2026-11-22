@@ -15,7 +15,9 @@
     ],
     "prHourlyLimit": 0,
     "updateNotScheduled": true,
-    "dependencyDashboard": true,
+    "dependencyDashboard": {
+        "enabled": true
+    },
     "internalChecksFilter": "strict",
     "lockFileMaintenance": {
         "enabled": true,

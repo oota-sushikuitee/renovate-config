@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "validate-config": "npx renovate-config-validator default.json"
+    "validate-config": "renovate-config-validator --strict --no-global default.json .github/renovate.json"
   },
   "devDependencies": {
     "renovate": "^44.0.0"
