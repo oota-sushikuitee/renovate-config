@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "default.json"
+      - ".github/renovate.json"
       - "package.json"
       - "pnpm-lock.yaml"
       - ".github/workflows/validate.yaml"
@@ -31,5 +32,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Validate default.json
+      - name: Validate Renovate config
         run: pnpm run validate-config
