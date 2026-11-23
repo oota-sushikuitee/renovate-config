@@ -92,6 +92,19 @@
                 "!actions/{/,}**"
             ],
             "pinDigests": true
+        },
+        {
+            "description": "Overrides and resolutions pin a transitive dependency inside the major its parents require, so a major bump there breaks the parents.",
+            "matchDepTypes": [
+                "overrides",
+                "pnpm.overrides",
+                "pnpm-workspace.overrides",
+                "resolutions"
+            ],
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "enabled": false
         }
     ]
 }

@@ -31,6 +31,7 @@ Shared Renovate configuration to enable across the whole GitHub organization.
 - `prHourlyLimit: 0` — no hourly limit on how many PRs Renovate may open. The number of PRs open at the same time is still capped by `prConcurrentLimit`, which is left at Renovate's default because this preset does not set it
 - All packages use `rangeStrategy: replace`: an existing version range is replaced with a new range only when the current one no longer allows the new version, instead of being widened or bumped every time
 - GitHub Actions not under `actions/` are pinned to their SHA256 digest. The first PR for such an action is a `pinDigest` update, which is automerged; later SHA refreshes come through as grouped `digest` updates
+- Entries under `overrides`, `pnpm.overrides`, `overrides` in `pnpm-workspace.yaml`, and Yarn `resolutions` get no major updates: they pin a transitive dependency inside the major its parents require. Minor, patch and in-major vulnerability fixes still arrive. To move such an entry to a new major, update the parents
 
 ## Rules for consumer repositories
 
